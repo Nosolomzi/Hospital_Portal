@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAUTENG EMS EFFICIENCY MANAGER'S PORTAL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { 
+            --gt-blue: #003366; 
+            --gt-gold: #FFD700; 
+        }
+
+        body { 
+            background: linear-gradient(rgba(0, 31, 63, 0.95), rgba(0, 31, 63, 0.95)), 
+            background-size: cover; 
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column;
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            color: white;
+        }
+
+        .main-content { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+        }
+        
+        /* This is the top emblem area - adjusted for a clean look */
+        .emblem-main { 
+            height: 30px; 
+            width: auto; 
+            margin-bottom: 30px; 
+        }
+
+        .portal-link {
+            text-decoration: none !important;
+            color: white !important;
+            transition: 0.3s;
+            display: inline-block;
+            padding: 10px 20px;
+        }
+
+        .portal-link:hover { 
+            color: var(--gt-gold) !important; 
+            transform: translateY(-3px); 
+        }
+
+        h2 { 
+            font-size: 0.5rem; 
+            font-weight: 700; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            margin: 0; 
+        }
+
+        /* Footer styling to hold newGGT.jpeg at the bottom */
+        footer {
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 25px 0; 
+            width: 100%; 
+            margin-top: auto;
+            border-top: 3px solid var(--gt-gold);
+        }
+
+        .footer-logo { 
+            height: 35px; /* Smaller size for the bottom logos */
+            width: auto; 
+        }
+
+        .vertical-divider {
+            border-left: 1px solid #ddd;
+            height: 25px;
+            margin: 0 15px;
+        }
+
+        .portal-link, .portal-link:hover, .portal-link:visited, .portal-link:active {
+            text-decoration: none !important;
+            border-bottom: none !important;
+        }
+
+    body::before {
+    content: '';
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 73vw;
+    height: 73vh;
+    background: url("{{ url_for('static', filename='we belong.jpeg') }}") no-repeat center center;
+    background-size: contain;
+    opacity: 0.10;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="main-content">
+        <img src="{{ url_for('static', filename='emblem2.jpeg') }}" alt="Province Emblem" style="height: 350px; width: auto; margin-bottom: 20px; display:block; margin:0 auto;">
+        
+        <div class="container">
+            <div class="row justify-content-center g-4" style="align-items:flex-start; gap:60px; margin-top:40px;">
+                <div class="col-auto" 
+        style="text-align:center; width:200px;">
+    <a href="/login/ems" class="portal-link">
+        <img src="{{ url_for('static', filename='05 May 2026/frontline2.jpeg') }}"
+             style="height: 50px; width: 50px; object-fit: contain; display:block; margin: 0 auto 10px auto;">
+        <h4>EMS FRONTLINE</h4>
+    </a>
+</div>
+
+<div class="col-auto" 
+        style="text-align:center; width:200px;">
+    <a href="/login/finance" class="portal-link">
+        <img src="{{ url_for('static', filename='04 May 2026/finance.jpeg') }}"
+             style="height: 50px; width: 50px; object-fit: contain; display:block; margin: 0 auto 10px auto;">
+        <h4>FINANCE DEPARTMENT</h4>
+    </a>
+</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+<footer style="background: white; padding: 10px 0; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+    <img src="{{ url_for('static', filename='newGGT.jpeg') }}" style="height: 50px; width: auto;">
+</footer>
+
+
+
+</body>
+</html>

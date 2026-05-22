@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body { 
+        background: linear-gradient(rgba(0,51,102,0.8), rgba(0,51,102,0.8)), 
+                    url('/static/gautengProvince.jpeg'); 
+        background-size: cover; 
+        height: 100vh; 
+        color: white; 
+    }
+    .glass-card { 
+    background: rgba(255,255,255,0.85); 
+    color: #003366; 
+    border-radius: 20px; 
+    padding: 30px;
+    text-align: left !important;
+    position: relative;
+    z-index: 1;
+}
+.form-label {
+    text-align: left !important;
+    display: block;
+    font-weight: 600;
+}
+.row {
+    text-align: left !important;
+}
+
+        body::before {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background: url("{{ url_for('static', filename='we belong,.jpeg') }}") no-repeat center center;
+    background-size: contain;
+    opacity: 0.20;
+    z-index: 0;
+    pointer-events: none;
+}
+
+    .table-wrapper, .glass-card, .navbar-custom {
+        position: relative;
+        z-index: 1;
+    }
+
+</style>
+</head>
+<body>
+    <div class="container py-5 text-start">
+        <div class="text-center mb-4">
+            <img src="/static/emblem.jpeg" style="height: 80px;">
+            <h2 class="fw-bold mt-2">GAUTENG EMS EFFICIENCY MANAGERS PORTAL</h2>
+<a href="https://forms.cloud.microsoft/r/13gk3MujUU" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COJ FLEET</a>
+<a href="https://forms.cloud.microsoft/r/eXhPk34DnP" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COE FLEET</a>
+<a href="https://forms.cloud.microsoft/r/dMgzEGLagn" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS SED FLEET</a>
+<a href="https://forms.cloud.microsoft/r/6ktYAMyLQp" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COT FLEET</a>
+<a href="https://forms.cloud.microsoft/r/1Yi1W6H3mD" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS WR FLEET</a>
+        </div>
+        
+        <div class="glass-card shadow mx-auto" style="max-width: 600px; text-align: left;">
+            <form action="/save" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Incident Number</label>
+                    <input type="text" name="incident" class="form-control" required>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-bold">District</label>
+                        <select name="district" id="district" class="form-select" onchange="updateStations()" required>
+                            <option value="">Select</option>
+                            {% for d in districts %}<option value="{{ d }}">{{ d }}</option>{% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-bold">Base (EMS Station)</label>
+                        <select name="station" id="station" class="form-select" required></select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Billing Class</label>
+                    <select name="billing_class" class="form-select">
+                        <option>Medical Aid</option><option>Medical Services</option><option>Non-Billable</option><option>Correctional Servics</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Upload PRF</label>
+                    <input type="file" name="prf_file" class="form-control" accept=".pdf" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">SUBMIT DOCUMENT</button>
+            </form>
+            <div class="text-center mt-3"><a href="/logout" class="text-danger small">Logout</a></div>
+        </div>
+    </div>
+
+    <script>
+        const stationData = JSON.parse('{{ districts_json | safe }}');
+        function updateStations() {
+            const d = document.getElementById('district').value;
+            const s = document.getElementById('station');
+            s.innerHTML = '';
+            if(stationData[d]) stationData[d].forEach(base => {
+                let o = document.createElement('option'); o.value = base; o.text = base; s.add(o);
+            });
+        }
+    </script>
+<footer style="background: rgba(255, 255, 255, 0.9); padding: 15px 0; width: 100%; margin-top: auto;">
+    <div class="container d-flex justify-content-center align-items-center gap-4">
+        <img src="{{ url_for('static', filename='newGGT.jpeg') }}" alt="GGT" style="height: 55px; width: auto; border-left: 1px solid #ccc; padding-left: 20px;">
+    </div>
+    
+    <div class="text-center py-3"
+    <img src="{{url_for('static', filename='emblem.jpeg')}}" class="emblem-main">
+    </div>
+</footer>
+
+</body>
+</html>

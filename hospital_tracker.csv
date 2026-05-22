@@ -1,0 +1,6 @@
+incident,district,station,billing_class,capture_date,prf_filename,downloaded
+101238,CITY OF JOHANNESBURG (COJ),Midrand,Non-Billable,23-Apr-2026 10:51,Prototype_1.pdf,yes
+100285,CITY OF JOHANNESBURG (COJ),Midrand,Correctional Servics,23-Apr-2026 10:52,BILLING_REVENUE_UNIT_TRACKER_Steps_4-5_Billable_records_auto-pulled_from_Register.pdf,yes
+100486,SEDIBENG (SED),Evaton,Medical Aid,23-Apr-2026 10:53,BILLING_REVENUE_UNIT_TRACKER_Steps_4-5_Billable_records_auto-pulled_from_Register.pdf,yes
+4444,CITY OF JOHANNESBURG (COJ),Midrand,Medical Services,07-May-2026 10:13,COA_Assignment_.pdf,yes
+5678,SEDIBENG (SED),Sebokeng,Non-Billable,22-May-2026 10:35,Architectural_Diagram.drawio.pdf,

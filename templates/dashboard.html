@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --gt-blue: #003366; --gt-gold: #FFD700; }
+
+        * { text-decoration: none !important; }
+
+        body {
+            background: linear-gradient(rgba(0, 31, 63, 0.88), rgba(0, 31, 63, 0.88)),
+                        url("{{ url_for('static', filename='gautengProvince.jpeg') }}") !important;
+            background-size: cover !important;
+            background-attachment: scroll !important;
+            background-position: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: white;
+            padding-bottom: 100px;
+        }
+
+        .navbar-custom {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--gt-gold);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-nav {
+            background: transparent;
+            border: 1px solid var(--gt-gold);
+            color: var(--gt-gold) !important;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            padding: 6px 16px;
+            border-radius: 6px;
+            text-decoration: none !important;
+        }
+        .btn-nav:hover { background: var(--gt-gold); color: var(--gt-blue) !important; }
+
+        .page-header {
+            text-align: center;
+            padding: 30px 16px 10px;
+            width: 100%;
+        }
+
+        .page-header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: var(--gt-gold);
+            text-transform: uppercase;
+            margin: 10px auto 0 auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px auto;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table { color: white; margin: 0; }
+        thead tr { border-bottom: 2px solid var(--gt-gold); }
+
+        th {
+            color: var(--gt-gold);
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 8px;
+        }
+
+        td {
+            padding: 10px 8px;
+            font-size: 0.85rem;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        tbody tr:hover { background: rgba(255, 215, 0, 0.05); }
+
+        .badge-billing {
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--gt-gold);
+            border: 1px solid var(--gt-gold);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .btn-prf {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid var(--gt-gold) !important;
+    color: var(--gt-gold) !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-text-decoration: none !important;
+}
+.btn-prf:hover {
+    background: var(--gt-gold) !important;
+    color: var(--gt-blue) !important;
+}
+
+
+        .status-downloaded {
+            color: #00e676;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .status-pending {
+            color: #ff9800;
+            font-size: 0.72rem;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .no-prf { font-size: 0.75rem; opacity: 0.35; font-style: italic; }
+
+        .no-data { text-align: center; opacity: 0.5; padding: 60px 20px; }
+        .no-data h4 { color: var(--gt-gold); }
+
+        .gov-footer {
+            background: white;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+    .page-header img {
+        height: 55px !important;
+        width: 55px !important;
+        max-width: 55px !important;
+        max-height: 55px !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+
+                a.btn-prf, a.btn-prf:hover, a.btn-prf:visited, a.btn-prf:active, a.btn-prf:focus {
+            text-decoration: none !important;
+            text-underline-offset: unset !important;
+            -webkit-text-decoration: none !important;
+            border-bottom: 0 !important;
+            outline: none !important;
+        }
+
+        body::before {
+    content: '';
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: url("{{ url_for('static', filename='we belong.jpeg') }}") no-repeat center center;
+    background-size: contain;
+    opacity: 0.20;
+    z-index: 0;
+    pointer-events: none;
+}
+
+    .table-wrapper, .glass-card, .navbar-custom {
+        position: relative;
+        z-index: 1;
+    }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar-custom">
+    <span style="font-size:0.75rem; letter-spacing:2px; opacity:0.6;">GAUTENG EMS</span>
+    <div style="display:flex; gap:10px;">
+        <a href="/export" class="btn-nav">⬇ EXPORT TO EXCEL</a>
+        <a href="/logout" class="btn-nav">LOGOUT</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<div class="page-header">
+    <p style="color: var(--gt-gold); font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 8px; opacity: 0.8; text-align:center; font-weight: bold;">Welcome, {{ username }}</p>
+    <img src="{{ url_for('static', filename='emblem.jpeg') }}" alt="Emblem"
+         style="max-width: 55px; max-height: 55px; max-width: 55px; max-height: 55px; object-fit:contain; display:block; margin:0 auto; flex-shrink:0;">
+    </div>
+    <h3 style="text-align:center !important; width:100% !important;">Finance Department</h3>
+</div>
+
+<!-- Table -->
+<div class="px-2">
+    <div class="table-wrapper">
+        {% if submissions %}
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th>Incident Number</th>
+                        <th>District</th>
+                        <th>Station</th>
+                        <th>Billing Class</th>
+                        <th>Capture Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in submissions %}
+                    {% if row.get('incident') and row.get('incident') != 'N/A' %}
+                    <tr>
+                        <td>{{ row.get('incident', '') }}</td>
+                        <td>{{ row.get('district', '') }}</td>
+                        <td>{{ row.get('station', '') }}</td>
+                        <td><span class="badge-billing">{{ row.get('billing_class', '') }}</span></td>
+                        <td>{{ row.get('capture_date', '') }}</td>
+                        <td>
+<td style="white-space:nowrap;">
+    {% if row.get('prf_filename') %}
+        <a href="/download/{{ row.get('prf_filename') }}" class="btn-prf">
+            ⬇ Download PRF
+        </a>
+        {% if row.get('downloaded') == 'yes' %}
+            <span style="color:#00e676; font-size:1rem; margin-left:8px;">✔</span>
+        {% else %}
+            <span style="color:#ff9800; font-size:1rem; margin-left:8px;">●</span>
+        {% endif %}
+    {% else %}
+        <span class="no-prf">No file</span>
+    {% endif %}
+</td>
+                               
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="no-data">
+            <h4>No submissions yet</h4>
+            <p>Submissions from EMS stations will appear here.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="gov-footer">
+   <footer style="background: white; padding: 10px 0; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+    <img src="{{ url_for('static', filename='newGGT.jpeg') }}" style="height: 50px; width: auto;">
+</footer>
+
+</body>
+</html>
