@@ -15,12 +15,12 @@
     color: #003366; 
     border-radius: 20px; 
     padding: 30px;
-    text-align: left !important;
+    text-align: center; !important;
     position: relative;
     z-index: 1;
 }
 .form-label {
-    text-align: left !important;
+    text-align: center; !important;
     display: block;
     font-weight: 600;
 }
@@ -36,9 +36,9 @@
     transform: translate(-50%, -50%);
     width: 100vw;
     height: 100vh;
-    background: url("{{ url_for('static', filename='we belong,.jpeg') }}") no-repeat center center;
+    background: url("{{ url_for('static', filename='we belong.jpeg') }}") no-repeat center center;
     background-size: contain;
-    opacity: 0.20;
+    opacity: 0.10;
     z-index: 0;
     pointer-events: none;
 }
@@ -47,24 +47,39 @@
         position: relative;
         z-index: 1;
     }
+    
+    .form-control, .form-select {
+        border: 2px solid #003366;
+    }
 
 </style>
 </head>
 <body>
+     <a href="/" class="text-secondary small">← LOGOUT</a>
     <div class="container py-5 text-start">
         <div class="text-center mb-4">
             <img src="/static/emblem.jpeg" style="height: 80px;">
             <h2 class="fw-bold mt-2">GAUTENG EMS EFFICIENCY MANAGERS PORTAL</h2>
-<a href="https://forms.cloud.microsoft/r/13gk3MujUU" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COJ FLEET</a>
+{% if user_district == 'CITY OF EKURHULENI (COE)' %}
 <a href="https://forms.cloud.microsoft/r/eXhPk34DnP" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COE FLEET</a>
-<a href="https://forms.cloud.microsoft/r/dMgzEGLagn" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS SED FLEET</a>
+
+{% elif user_district == 'CITY OF JOHANNESBURG (COJ)' %}
+<a href="https://forms.cloud.microsoft/r/13gk3MujUU" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COJ FLEET</a>
+
+{% elif user_district == 'CITY OF TSHWANE (COT)' %}
 <a href="https://forms.cloud.microsoft/r/6ktYAMyLQp" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS COT FLEET</a>
+
+{% elif user_district == 'WESTRAND (WR)' %}
 <a href="https://forms.cloud.microsoft/r/1Yi1W6H3mD" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS WR FLEET</a>
+
+{% elif user_district == 'SEDIBENG (SED)' %}
+<a href="https://forms.cloud.microsoft/r/dMgzEGLagn" target="_blank" class="btn btn-warning fw-bold mt-2">🚚 ACCESS SED FLEET</a>
+{% endif %}
         </div>
         
-        <div class="glass-card shadow mx-auto" style="max-width: 600px; text-align: left;">
+        <div class="glass-card mx-auto" style="max-width: 400px; text-align: left;">
             <form action="/save" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
+            <div class="mb-3">
                     <label class="form-label fw-bold">Incident Number</label>
                     <input type="text" name="incident" class="form-control" required>
                 </div>
@@ -91,9 +106,12 @@
                     <label class="form-label fw-bold">Upload PRF</label>
                     <input type="file" name="prf_file" class="form-control" accept=".pdf" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">SUBMIT DOCUMENT</button>
-            </form>
-            <div class="text-center mt-3"><a href="/logout" class="text-danger small">Logout</a></div>
+                <div class="text-center">
+   <button type="submit" 
+            class="btn border-0 text-decoration-underline fw-bold"
+            style="color: #1f7ddb;">SUBMIT DOCUMENT</button>
+        </div>
+            </form>
         </div>
     </div>
 

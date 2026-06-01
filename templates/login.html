@@ -45,15 +45,15 @@
             background: rgba(255, 255, 255, 0.96);
             color: #003366;
             border-radius: 16px;
-            padding: 32px;
+            padding: 24px;
             width: 100%;
-            max-width: 420px;
+            max-width: 340px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            text-align: left;
+            text-align: center;
         }
 
         .form-label {
-            font-weight: 600;
+            font-weight: bold;
             font-size: 0.85rem;
         }
 
@@ -63,9 +63,11 @@
             font-weight: 700;
             letter-spacing: 2px;
             border: none;
-            padding: 12px;
+            padding: 12px 32px;
             border-radius: 8px;
-            width: 100%;
+            width: 20%;
+            display: block;
+            margin: 0 auto;
         }
 
         .btn-login:hover { background: #004080; color: white; }
@@ -88,19 +90,23 @@
             gap: 30px;
         }
 
+        .form-control {
+            border: 2px solid #003366;
+        }
+
         .footer-logo { height: 32px; width: auto; }
 
         body::before {
     content: '';
     position: fixed;
-    top: 50%;
+    top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background: url("{{ url_for('static', filename='we belong,.jpeg') }}") no-repeat center center;
+    width: 755px;
+    height: 755px;
+    background: url("{{ url_for('static', filename='we belong.jpeg') }}") no-repeat center center;
     background-size: contain;
-    opacity: 0.08;
+    opacity: 0.07;
     z-index: 0;
     pointer-events: none;
 }
@@ -116,11 +122,16 @@
 
 <div class="page-wrapper">
 
+    <div class="d-flex justify-content-left"> 
+        <div class="text-center mt-3">
+            <a href="/" class="text-secondary small">← Back to Home</a>
+        </div>
+    </div>
 <!-- Header -->
 <div class="text-center mb-3" style="text-align:center !important; width:100% !important;">
     <img src="{{ url_for('static', filename='emblem2.jpeg') }}" 
-         style="height: 90px !important; width: auto !important; max-width: 90px !important; display:block; margin:0 auto 10px auto;">
-    <div class="portal-title" style="text-align:center !important; width:100% !important;">
+         style="height: 120px !important; width: auto !important; max-width: 120px !important; display:block; margin:0 auto 10px auto;">
+    <div class="portal-title fw-bold" style="text-align:center !important; width:100% !important;">
         {% if role == 'finance' %}Finance Department{% else %}EMS Frontline Portal{% endif %}
     </div>
 </div>
@@ -134,20 +145,24 @@
         {% endif %}
 
         <form method="POST">
-            <div class="mb-3">
-                <label class="form-label">Username</label>
+            <div class="mx-auto w-25 mb-1">
+                <label class="form-label w-100 text-center mb-1 fw-bold">Username</label>
                 <input type="text" name="username" class="form-control" placeholder="Enter username" required autofocus>
             </div>
-            <div class="mb-4">
-                <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
-            </div>
-            <button type="submit" class="btn-login">LOGIN</button>
+            <div class="mx-auto pt-0 w-25">
+                <label class="form-label mb-1 w-100 text-center fw-bold">Password</label>
+                <input type="password" name="password" class="form-control pt-0 mt-0" placeholder="Enter password" required>
+           
+
+            <div class="text-center">
+    <button type="submit" 
+            class="btn border-0 text-decoration-underline fw-bold"
+            style="color: #1f7ddb;">LOGIN</button>
+            </div>
+
         </form>
 
-        <div class="text-center mt-3">
-            <a href="/" class="text-secondary small">← Back to Home</a>
-        </div>
+        
     </div>
 
 </div>

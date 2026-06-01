@@ -67,7 +67,19 @@ def login(role):
 def submit_page():
     if session.get('role') != 'ems':
         return redirect(url_for('index'))
-    return render_template('submit.html', districts=sorted(DISTRICTS.keys()), districts_json=json.dumps(DISTRICTS))
+    
+    # Find which district the logged-in station belongs to
+    user_station = session.get('user')
+    user_district = None
+    for district, stations in DISTRICTS.items():
+        if user_station in stations:
+            user_district = district
+            break
+    
+    return render_template('submit.html', 
+                           districts=sorted(DISTRICTS.keys()), 
+                           districts_json=json.dumps(DISTRICTS),
+                           user_district=user_district)
 
 @app.route('/dashboard')
 def dashboard_page():
