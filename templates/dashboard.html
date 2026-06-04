@@ -15,7 +15,7 @@
                         url("{{ url_for('static', filename='gautengProvince.jpeg') }}") !important;
             background-size: cover !important;
             background-attachment: scroll !important;
-            background-position: center;
+            background-position: center;
             min-height: 100vh;
             font-family: 'Segoe UI', system-ui, sans-serif;
             color: white;
@@ -69,7 +69,7 @@
             padding: 24px;
             margin: 20px auto;
             max-width: 100%;
-            overflow-x: auto;
+            overflow-x: auto;
         }
 
         .table { color: white; margin: 0; }
@@ -82,6 +82,7 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             padding: 10px 8px;
+            text-align: center; !important
         }
 
         td {
@@ -104,22 +105,25 @@
         }
 
         .btn-prf {
-    display: inline-block;
-    background: rgba(255, 215, 0, 0.12);
-    border: 1px solid var(--gt-gold) !important;
-    color: var(--gt-gold) !important;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 5px 14px;
-    border-radius: 20px;
-    text-decoration: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-    -webkit-text-decoration: none !important;
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid var(--gt-gold) !important;
+    color: var(--gt-gold) !important;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    text-decoration: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-text-decoration: none !important;
+    border-bottom: none !important;
 }
+a.btn-prf { text-decoration: none !important; }
+
 .btn-prf:hover {
-    background: var(--gt-gold) !important;
-    color: var(--gt-blue) !important;
+    background: var(--gt-gold) !important;
+    color: var(--gt-blue) !important;
 }
 
 
@@ -153,51 +157,57 @@
             position: fixed;
             bottom: 0;
             left: 0;
-            right: 0;
+            right: 0;
             z-index: 999;
         }
 
-    .page-header img {
-        height: 55px !important;
-        width: 55px !important;
-        max-width: 55px !important;
-        max-height: 55px !important;
-        object-fit: contain !important;
-        display: block !important;
-        margin: 0 auto !important;
-    }
+    .page-header img {
+        height: 5px !important;
+        width: 5px !important;
+        max-width: 5px !important;
+        max-height: 5px !important;
+        object-fit: contain !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
 
-                a.btn-prf, a.btn-prf:hover, a.btn-prf:visited, a.btn-prf:active, a.btn-prf:focus {
-            text-decoration: none !important;
-            text-underline-offset: unset !important;
-            -webkit-text-decoration: none !important;
-            border-bottom: 0 !important;
-            outline: none !important;
-        }
+                a.btn-prf, a.btn-prf:hover, a.btn-prf:visited, a.btn-prf:active, a.btn-prf:focus {
+            text-decoration: none !important;
+            -webkit-text-decoration: none !important;
+            border-bottom: 0 !important;
+            outline: none !important;
+        }
 
-        body::before {
-    content: '';
-    position: fixed;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 500px;
-    background: url("{{ url_for('static', filename='we belong.jpeg') }}") no-repeat center center;
-    background-size: contain;
-    opacity: 0.20;
-    z-index: 0;
-    pointer-events: none;
+        body::before {
+    content: '';
+    position: fixed;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: url("{{ url_for('static', filename='we belong.jpeg') }}") no-repeat center center;
+    background-size: contain;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
 }
 
-    .table-wrapper, .glass-card, .navbar-custom {
-        position: relative;
-        z-index: 1;
-    }
+    .table-wrapper, .glass-card, .navbar-custom {
+        position: relative;
+        z-index: 1;
+    }
 
     </style>
 </head>
 <body>
+
+    <div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); 
+            width:600px; height:600px; z-index:0; pointer-events:none;
+            opacity:0.15;">
+    <img src="{{ url_for('static', filename='we belong.jpeg') }}" 
+         style="width:100%; height:100%; object-fit:contain;">
+</div>
 
 <nav class="navbar-custom">
     <span style="font-size:0.75rem; letter-spacing:2px; opacity:0.6;">GAUTENG EMS</span>
@@ -209,10 +219,11 @@
 
 <!-- Header -->
 <div class="page-header">
-    <p style="color: var(--gt-gold); font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 8px; opacity: 0.8; text-align:center; font-weight: bold;">Welcome, {{ username }}</p>
+    <p style="color: var(--gt-gold); font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 8px; opacity: 0.8; text-align:center; font-weight: bold;">Welcome, {{ username }}</p>
     <img src="{{ url_for('static', filename='emblem.jpeg') }}" alt="Emblem"
-         style="max-width: 55px; max-height: 55px; max-width: 55px; max-height: 55px; object-fit:contain; display:block; margin:0 auto; flex-shrink:0;">
-    </div>
+        class="mx-auto d-block"
+        style="height:75px !important; width:75px !important; max-width:75px !important; max-height:75px !important; object-fit:contain;">
+    </div>
     <h3 style="text-align:center !important; width:100% !important;">Finance Department</h3>
 </div>
 
@@ -224,37 +235,38 @@
             <table class="table table-borderless">
                 <thead>
                     <tr>
-                        <th>Incident Number</th>
-                        <th>District</th>
-                        <th>Station</th>
-                        <th>Billing Class</th>
-                        <th>Capture Date</th>
+                        <th class="text-center fw-bold">Incident Number</th>
+                        <th class="text-center fw-bold">District</th>
+                        <th class="text-center fw-bold">Station</th>
+                        <th class="text-center fw-bold">Billing Class</th>
+                        <th class="text-center fw-bold">Capture Date</th>
+                        <th class="text-center fw-bold" style="width: 150px;">PRF</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
                     {% for row in submissions %}
-                    {% if row.get('incident') and row.get('incident') != 'N/A' %}
+                    {% if row.incident and row.incident != 'N/A' %}
                     <tr>
-                        <td>{{ row.get('incident', '') }}</td>
-                        <td>{{ row.get('district', '') }}</td>
-                        <td>{{ row.get('station', '') }}</td>
-                        <td><span class="badge-billing">{{ row.get('billing_class', '') }}</span></td>
-                        <td>{{ row.get('capture_date', '') }}</td>
-                        <td>
-<td style="white-space:nowrap;">
-    {% if row.get('prf_filename') %}
-        <a href="/download/{{ row.get('prf_filename') }}" class="btn-prf">
-            ⬇ Download PRF
-        </a>
-        {% if row.get('downloaded') == 'yes' %}
-            <span style="color:#00e676; font-size:1rem; margin-left:8px;">✔</span>
+                        <td>{{ row.incident }}</td>
+                        <td>{{ row.district }}</td>
+                        <td>{{ row.station }}</td>
+                        <td><span class="badge-billing">{{ row.billing_class  }}</span></td>
+                        <td>{{ row.capture_date }}</td>
+
+<td class="text-center" style="white-space:nowrap;">
+    {% if row.prf_filename %}
+        <a href="/download/{{ row.prf_filename }}" class="btn-prf">⬇ Download PRF</a>&nbsp;
+        {% if row.downloaded == 'yes' %}
+            <span style="color:#00e676;">✔</span>
         {% else %}
-            <span style="color:#ff9800; font-size:1rem; margin-left:8px;">●</span>
+            <span style="color:#ff9800;">●</span>
         {% endif %}
     {% else %}
         <span class="no-prf">No file</span>
     {% endif %}
 </td>
+
                                
                     </tr>
                     {% endif %}
@@ -274,7 +286,7 @@
 <!-- Footer -->
 <footer class="gov-footer">
    <footer style="background: white; padding: 10px 0; display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; width: 100%;">
-    <img src="{{ url_for('static', filename='newGGT.jpeg') }}" style="height: 50px; width: auto;">
+    <img src="{{ url_for('static', filename='newGGT.jpeg') }}" style="height: 50px; width: auto;">
 </footer>
 
 </body>
