@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = "gauteng_ems_2026_secure"
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['SESSION_COOKIE_HTTPONLY'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.rnlzboymgcpklspogdvu:Nosolomzi_ngcwabe10@aws-0-eu-west-1.pooler.supabase.com:6543/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Admin!10@127.0.0.1:3306/ems_portal'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
